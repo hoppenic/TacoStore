@@ -25,10 +25,12 @@ namespace TacoStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IdentityDbContext>(opt => opt.UseInMemoryDatabase("Identities"));
+            string TacoStoreConnectionString = Configuration.GetConnectionString("TacoStore");
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContext>()
+            services.AddDbContext<TacoStoreDbContext>(opt => opt.UseSqlServer(TacoStoreConnectionString));
+
+            services.AddIdentity<TacoStoreUser, IdentityRole>()
+                .AddEntityFrameworkStores<TacoStoreDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();

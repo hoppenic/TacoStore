@@ -12,9 +12,9 @@ namespace TacoStore.Controllers
     public class AccountController : Controller
     {
 
-        SignInManager<IdentityUser> _signInManager;
+        SignInManager<TacoStoreUser> _signInManager;
 
-        public AccountController(SignInManager<IdentityUser> signInManager)
+        public AccountController(SignInManager<TacoStoreUser> signInManager)
         {
             _signInManager = signInManager;
 
@@ -41,7 +41,14 @@ namespace TacoStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser newUser = new IdentityUser(model.UserName);
+                TacoStoreUser newUser = new TacoStoreUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber
+                };
 
                 IdentityResult creationResult = _signInManager.UserManager.CreateAsync(newUser).Result;
 
@@ -90,7 +97,7 @@ namespace TacoStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser existingUser = _signInManager.UserManager.FindByNameAsync(model.UserName).Result;
+                TacoStoreUser existingUser = _signInManager.UserManager.FindByNameAsync(model.UserName).Result;
                 if(existingUser != null)
                 {
                     Microsoft.AspNetCore.Identity.SignInResult passwordResult = _signInManager.CheckPasswordSignInAsync(existingUser, model.Password, false).Result;

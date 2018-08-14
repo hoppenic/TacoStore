@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TacoStore.Models;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace TacoStore.Controllers
 {
     public class AccountController : Controller
@@ -25,9 +26,14 @@ namespace TacoStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(string username, string password)
+        public IActionResult Register(RegisterViewModel model)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                //TODO: Create an account and log user in
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
         }
 
 

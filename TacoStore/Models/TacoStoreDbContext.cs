@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TacoStore.Models;
 
 namespace TacoStore.Models
 {
@@ -33,4 +34,35 @@ namespace TacoStore.Models
         public string LastName { get; set; }
 
     }
+
+    public class Cart
+    {
+
+        //constructor assigning hashset of class CartItem to a variable called CartItems
+        public Cart()
+        {
+            var CartItems = new HashSet<CartItem>();
+        }
+
+        //Cart class properties
+        public int ID { get; set; }
+        public Guid CookieIdentifier { get; set; }
+        public DateTime LastModified { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
+    }
+
+
+    public class CartItem
+    {
+        public int ID { get; set; }
+        public Cart Cart { get; set; }
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
+    }
+
+
+
+
+
+
 }

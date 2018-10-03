@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TacoStore.Models;
 
+
 namespace TacoStore.Models
 {
     public class TacoStoreDbContext :IdentityDbContext<TacoStoreUser>
@@ -43,7 +44,7 @@ namespace TacoStore.Models
         //constructor assigning hashset of class CartItem to a variable called CartItems
         public Cart()
         {
-            var CartItems = new HashSet<CartItem>();
+            CartItems = new HashSet<CartItem>();
         }
 
         //Cart class properties

@@ -11,9 +11,10 @@ using TacoStore.Models;
 namespace TacoStore.Migrations
 {
     [DbContext(typeof(TacoStoreDbContext))]
-    partial class TacoStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180815155009_cart")]
+    partial class cart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
